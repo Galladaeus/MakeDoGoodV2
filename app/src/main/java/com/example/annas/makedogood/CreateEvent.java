@@ -48,7 +48,7 @@ public class CreateEvent extends AppCompatActivity {
 
                 CurrentEvents.add(tempo);
 
-                final Button backButton = (Button) findViewById(R.id.back_button);
+                final Button backButton = (Button) findViewById(R.id.backButton);
                 final Button submitButton = (Button) findViewById(R.id.submit_button);
                 // If event is submitted, write to database
                 submitButton.setOnClickListener(new View.OnClickListener() {

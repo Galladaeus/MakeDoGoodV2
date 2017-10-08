@@ -80,11 +80,4 @@
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintRight_creator="1" />
 
-    <TextClock
-        android:id="@+id/main_menu_clock"
-        android:layout_width="55dp"
-        android:layout_height="21dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="16dp" />
-
 </android.support.constraint.ConstraintLayout>
