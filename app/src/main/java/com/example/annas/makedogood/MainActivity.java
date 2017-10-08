@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         final Button createEventButton = (Button) findViewById(R.id.create_event_button);
         final Button viewEventsButton = (Button) findViewById(R.id.view_events_button);
-        final Button emergencyButton = (Button) findViewById(R.id.button5);
+        final Button emergencyButton = (Button) findViewById(R.id.emergency_button);
         mFusedLocationClient.getLastLocation()
         .addOnSuccessListener(this, new OnSuccessListener<Location>() {
             @Override
@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // TODO Emergency button should have ability to give additional info if there is time
         emergencyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
