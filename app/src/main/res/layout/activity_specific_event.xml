@@ -4,13 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.annas.makedogood.CurrentEvents">
-
-        <ListView
-            style="@style/Widget.AppCompat.ListView"
-            android:id="@+id/events"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
+    tools:context="com.example.annas.makedogood.SpecificEvent">
 
 </android.support.constraint.ConstraintLayout>
