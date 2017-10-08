@@ -16,6 +16,7 @@ public class CreateEvent extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.b1);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 final EditText eventName = (EditText) findViewById(R.id.name);
                 String name = eventName.getText().toString();
 
@@ -24,10 +25,15 @@ public class CreateEvent extends AppCompatActivity {
 
                 final EditText date = (EditText) findViewById(R.id.date);
                 String dat = date.getText().toString();
+
                 final EditText time = (EditText) findViewById(R.id.time);
                 String tim = time.getText().toString();
+
+
                 final EditText eventd = (EditText) findViewById(R.id.editText13);
                 String description = eventd.getText().toString();
+
+                Event tempo = new Event(name, address, dat, tim, description);
             }
         });
     }

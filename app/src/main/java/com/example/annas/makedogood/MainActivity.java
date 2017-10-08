@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         em.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getBaseContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                     // TODO: Consider calling
                     //    ActivityCompat#requestPermissions
@@ -54,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
                     //                                          int[] grantResults)
                     // to handle the case where the user grants the permission. See the documentation
                     // for ActivityCompat#requestPermissions for more details.
-                    return;
+                    ActivityCompat.requestPermissions(MainActivity.this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            1);
                 }
                 mFusedLocationClient.getLastLocation();
 
@@ -62,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                         new NotificationCompat.Builder(getBaseContext())
                                 .setSmallIcon(R.drawable.cast_ic_notification_small_icon)
                                 .setContentTitle("Your location is now shared")
-                                .setContentText("Hello World!");
+                                .setContentText("Emergency!");
 
                 NotificationManager mNotificationManager =
 
