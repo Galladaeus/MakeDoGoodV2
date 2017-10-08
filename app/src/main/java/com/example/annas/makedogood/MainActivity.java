@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         final Button button = (Button) findViewById(R.id.button2);
         final Button view = (Button) findViewById(R.id.button4);
         final Button em = (Button) findViewById(R.id.button5);
@@ -58,7 +58,9 @@ public class MainActivity extends AppCompatActivity {
                     ActivityCompat.requestPermissions(MainActivity.this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             1);
+                    return;
                 }
+
                 mFusedLocationClient.getLastLocation();
 
                 NotificationCompat.Builder mBuilder =
