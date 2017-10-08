@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
-import android.location.LocationListener;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,11 +20,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private FusedLocationProviderClient mFusedLocationClient;
     private double longitude;
-    // Reference to firebase database, uninitialized
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase; // Uninitialized reference to firebase database
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
-        final Button createEventButton = (Button) findViewById(R.id.button2);
-        final Button viewEventsButton = (Button) findViewById(R.id.button4);
+        final Button createEventButton = (Button) findViewById(R.id.create_event_button);
+        final Button viewEventsButton = (Button) findViewById(R.id.view_events_button);
         final Button emergencyButton = (Button) findViewById(R.id.button5);
         mFusedLocationClient.getLastLocation()
         .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -55,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 // Test write to database
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.child("users").setValue("TestWrite");
+
                 Intent intent = new Intent(getApplicationContext(), CurrentEvents.class);
                 startActivity(intent);
             }

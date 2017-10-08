@@ -22,13 +22,10 @@ public class SpecificEvent extends AppCompatActivity {
         TextView five = (TextView) findViewById(R.id.textView5);
 
         one.setText(CurrentEvents.arr.get(i).name);
-        two.setText(CurrentEvents.arr.get(i).location);
-        three.setText(CurrentEvents.arr.get(i).date);
+        two.setText(CurrentEvents.arr.get(i).address);
+        three.setText(CurrentEvents.arr.get(i).time);
         four.setText(CurrentEvents.arr.get(i).type);
         five.setText(CurrentEvents.arr.get(i).description);
-
-
-
     }
 
 }

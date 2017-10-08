@@ -1,16 +1,28 @@
 package com.example.annas.makedogood;
 
 import android.content.Intent;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 
 public class CurrentEvents extends AppCompatActivity {
+
+    private DatabaseReference mDatabase;
 
     static Event one = new Event("Trash Cleanup", "Narnia", "10/10/2010", "12:00am", "Clean trash in the river");
     static Event foodDrive = new Event("Cooking Occasion", "Hogwarts Dr, Switzerland", "10/10/2010", "12:00am", "Cool for the homeless");
@@ -22,10 +34,29 @@ public class CurrentEvents extends AppCompatActivity {
         arr.add(one);
         arr.add(foodDrive);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("/events/");
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot event: dataSnapshot.getChildren()) {
+                    // Adds events to arr
+                    arr.add(event.getValue(Event.class));
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
         mobileArray.add(arr.get(0).name);
         mobileArray.add(arr.get(1).name);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_current_events);
 
