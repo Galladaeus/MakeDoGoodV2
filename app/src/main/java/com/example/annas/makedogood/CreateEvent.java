@@ -31,24 +31,22 @@ public class CreateEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                final EditText eventName = (EditText) findViewById(R.id.name);
-                final String name = eventName.getText().toString();
+                final EditText name = (EditText) findViewById(R.id.name);
+                final String eventName = name.getText().toString();
 
-                final EditText addr = (EditText) findViewById(R.id.addr);
-                final String address = addr.getText().toString();
+                final EditText address = (EditText) findViewById(R.id.addr);
+                final String eventAddress = address.getText().toString();
 
                 final EditText date = (EditText) findViewById(R.id.date);
-                final String dat = date.getText().toString();
+                final String eventDate = date.getText().toString();
 
                 final EditText time = (EditText) findViewById(R.id.time);
-                final String tim = time.getText().toString();
+                final String eventTime = time.getText().toString();
 
-                final EditText eventd = (EditText) findViewById(R.id.editText13);
-                final String description = eventd.getText().toString();
+                final EditText description = (EditText) findViewById(R.id.editText13);
+                final String eventDescription = description.getText().toString();
 
-                final String eventKey = name + address;
-
-                Event tempo = new Event(name, address, dat, tim, description);
+                Event tempo = new Event(eventName, eventAddress, eventDate, eventTime, eventDescription);
 
                 CurrentEvents.add(tempo);
 
@@ -56,35 +54,15 @@ public class CreateEvent extends AppCompatActivity {
                 // If event is submitted, write to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        isFound = false;
                         mDatabase = FirebaseDatabase.getInstance().getReference();
-                        mDatabase.orderByChild("events").addChildEventListener(new ChildEventListener() {
-                            @Override
-                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                                // Event key was found, either event was already created or database error
-                                if(dataSnapshot.getValue() == eventKey) {
-                                    isFound = true;
-                                    //TODO send error message and tell user to change name/address
-                                }
-                                System.out.println(dataSnapshot.getKey());
-                            }
-                            @Override
-                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                            }
-                            @Override
-                            public void onChildRemoved(DataSnapshot dataSnapshot) {
-                            }
-                            @Override
-                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-                            }
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                            }
-                        });
+
+                        Map<String, Object> eventData = new HashMap<>();
+                        eventData.put("name", eventName);
+                        eventData.put("description", eventDescription);
 
                         String key = mDatabase.child("events").push().getKey();
                         Map<String, Object> newEvent = new HashMap<>();
-                        newEvent.put(key, name);
+                        newEvent.put(key, eventData);
 
                         mDatabase.child("events").updateChildren(newEvent);
 
