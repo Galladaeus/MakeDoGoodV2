@@ -16,43 +16,38 @@ import android.widget.Button;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private FusedLocationProviderClient mFusedLocationClient;
-
-
+    // Reference to firebase database, uninitialized
+    private DatabaseReference mDatabase;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
-        final Button button = (Button) findViewById(R.id.button2);
-        final Button vi = (Button) findViewById(R.id.button4);
-        final Button em = (Button) findViewById(R.id.button5);
+        final Button createEventButton = (Button) findViewById(R.id.button2);
+        final Button viewEventsButton = (Button) findViewById(R.id.button4);
+        final Button emergencyButton = (Button) findViewById(R.id.button5);
 
-
-        button.setOnClickListener(new View.OnClickListener() {
-
+        viewEventsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CreateEvent.class);
-                startActivity(intent);
-            }
-        });
-
-        vi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                // Test write to database
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("users").setValue("TestWrite");
                 Intent intent = new Intent(getApplicationContext(), CurrentEvents.class);
                 startActivity(intent);
             }
         });
-        em.setOnClickListener(new View.OnClickListener() {
+
+        emergencyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -88,6 +83,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        createEventButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateEvent.class);
+                startActivity(intent);
+            }
+        });
     }
 }
