@@ -65,7 +65,7 @@ public class CreateEvent extends AppCompatActivity {
                         newEvent.put(key, eventData);
 
                         mDatabase.child("events").updateChildren(newEvent);
-
+                        // TODO Double click to return to main page????
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }
