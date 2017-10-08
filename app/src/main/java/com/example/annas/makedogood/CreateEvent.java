@@ -29,11 +29,14 @@ public class CreateEvent extends AppCompatActivity {
                 final EditText time = (EditText) findViewById(R.id.time);
                 String tim = time.getText().toString();
 
-
                 final EditText eventd = (EditText) findViewById(R.id.editText13);
                 String description = eventd.getText().toString();
 
                 Event tempo = new Event(name, address, dat, tim, description);
+
+                CurrentEvents.add(tempo);
+
+
             }
         });
     }

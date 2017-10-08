@@ -32,11 +32,20 @@ public class MainActivity extends AppCompatActivity {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         final Button button = (Button) findViewById(R.id.button2);
-        final Button view = (Button) findViewById(R.id.button4);
+        final Button vi = (Button) findViewById(R.id.button4);
         final Button em = (Button) findViewById(R.id.button5);
 
 
-        view.setOnClickListener(new View.OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), CreateEvent.class);
+                startActivity(intent);
+            }
+        });
+
+        vi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), CurrentEvents.class);
@@ -79,13 +88,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CreateEvent.class);
-                startActivity(intent);
-            }
-        });
     }
 }
