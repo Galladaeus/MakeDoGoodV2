@@ -14,18 +14,30 @@ public class Event {
     String name;
     String description;
     String address;
+    String date;
     String time;
     String type;
 
     public Event() {
     }
 
-    public Event(String name, String description, String address, String time, String type) {
+    public Event(String name, String description, String address, String date, String time, String type) {
         this.name = name;
         this.description = description;
         this.address = address;
+        this.date = date;
         this.time = time;
         this.type = type;
+    }
+
+    public boolean isEventEntryEmpty() {
+        if(this.name == "" || this.description == "" || this.address == ""
+                || this.date == "" || this.time == "" || this.type == "") {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Exclude
@@ -36,6 +48,7 @@ public class Event {
         eventData.put("name", name);
         eventData.put("description", description);
         eventData.put("location", address);
+        eventData.put("date", date);
         eventData.put("time", time);
         eventData.put("type", type);
 

@@ -45,7 +45,7 @@ public class CreateEvent extends AppCompatActivity {
                 final EditText type = (EditText) findViewById(R.id.event_type);
                 final String eventType = type.getText().toString();
 
-                Event tempo = new Event(eventName, eventDescription, eventAddress, eventTime, eventType);
+                Event tempo = new Event(eventName, eventDescription, eventAddress, eventDate, eventTime, eventType);
 
                 CurrentEvents.add(tempo);
 
@@ -56,7 +56,7 @@ public class CreateEvent extends AppCompatActivity {
                         // Add new event to database if user submitted
                         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-                        Event event = new Event(eventName,eventDescription,eventAddress,eventTime,eventType);
+                        Event event = new Event(eventName,eventDescription,eventAddress,eventDate,eventTime,eventType);
                         event.eventDataToMap();
 
                         String key = mDatabase.child("events").push().getKey();

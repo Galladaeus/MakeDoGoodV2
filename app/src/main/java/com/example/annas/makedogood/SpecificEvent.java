@@ -20,12 +20,14 @@ public class SpecificEvent extends AppCompatActivity {
         TextView three = (TextView) findViewById(R.id.textView3);
         TextView four = (TextView) findViewById(R.id.textView4);
         TextView five = (TextView) findViewById(R.id.textView5);
+        TextView six = (TextView) findViewById(R.id.textView6);
 
         one.setText(CurrentEvents.arr.get(i).name);
         two.setText(CurrentEvents.arr.get(i).address);
         three.setText(CurrentEvents.arr.get(i).time);
         four.setText(CurrentEvents.arr.get(i).type);
         five.setText(CurrentEvents.arr.get(i).description);
+        six.setText(CurrentEvents.arr.get(i).date);
 
     }
 

@@ -24,8 +24,8 @@ public class CurrentEvents extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
 
-    static Event one = new Event("Trash Cleanup", "Narnia", "10/10/2010", "12:00am", "Clean trash in the river");
-    static Event foodDrive = new Event("Cooking Occasion", "Hogwarts Dr, Switzerland", "10/10/2010", "12:00am", "Cool for the homeless");
+    static Event one = new Event("Trash Cleanup", "Clean trash in the river", "Narnia", "10/10/2010", "12:00am", "Clean-up");
+    static Event foodDrive = new Event("Cooking Occasion", "Volunteer at the soup kitchen for homeless wizards", "Hogwarts Dr, Switzerland", "10/10/2010", "12:00am", "Food Service");
 
     public static ArrayList<Event> arr = new ArrayList<Event>();
     public static ArrayList<String> mobileArray = new ArrayList<String>();
