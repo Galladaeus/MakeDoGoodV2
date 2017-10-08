@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "92274583387",
+    "firebase_url": "https://makedogoodv2.firebaseio.com",
+    "project_id": "makedogoodv2",
+    "storage_bucket": "makedogoodv2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92274583387:android:b8429ce8f481d1fd",
+        "android_client_info": {
+          "package_name": "com.example.annas.makedogood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92274583387-0fp5uf2u59e77t3cfm02m5jthu1dtqsh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.annas.makedogood",
+            "certificate_hash": "28cd79bae828ece67741dd862ec7d39675203040"
+          }
+        },
+        {
+          "client_id": "92274583387-4mgtgu73p7g4f95qu51kcekt1e4l9mdt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxRzL3izZtA8uZbcvvv6P69jzvJ-pXSIQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92274583387-4mgtgu73p7g4f95qu51kcekt1e4l9mdt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
