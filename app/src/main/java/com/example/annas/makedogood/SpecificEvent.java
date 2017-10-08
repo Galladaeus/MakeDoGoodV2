@@ -26,6 +26,7 @@ public class SpecificEvent extends AppCompatActivity {
         three.setText(CurrentEvents.arr.get(i).time);
         four.setText(CurrentEvents.arr.get(i).type);
         five.setText(CurrentEvents.arr.get(i).description);
+
     }
 
 }

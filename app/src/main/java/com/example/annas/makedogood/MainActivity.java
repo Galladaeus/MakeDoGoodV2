@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(MainActivity.this);
         final Button createEventButton = (Button) findViewById(R.id.create_event_button);
         final Button viewEventsButton = (Button) findViewById(R.id.view_events_button);
