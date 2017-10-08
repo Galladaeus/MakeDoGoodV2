@@ -1,6 +1,7 @@
 package com.example.annas.makedogood;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,7 @@ public class CreateEvent extends AppCompatActivity {
                 // If event is submitted, write to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
                         // Add new event to database if user submitted
                         mDatabase = FirebaseDatabase.getInstance().getReference();
 
