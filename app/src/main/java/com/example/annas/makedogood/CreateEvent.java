@@ -1,7 +1,6 @@
 package com.example.annas.makedogood;
 
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,6 @@ import java.util.Map;
 public class CreateEvent extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    boolean formComplete = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +25,8 @@ public class CreateEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+
+                final Button backButton = (Button) findViewById(R.id.button3);
                 final EditText name = (EditText) findViewById(R.id.event_name);
                 final String eventName = name.getText().toString();
 
@@ -45,7 +45,7 @@ public class CreateEvent extends AppCompatActivity {
                 final EditText type = (EditText) findViewById(R.id.event_type);
                 final String eventType = type.getText().toString();
 
-                Event tempo = new Event(eventName, eventDescription, eventAddress, eventDate, eventTime, eventType);
+                Event tempo = new Event(eventName, eventDescription, eventAddress, eventTime, eventType);
 
                 CurrentEvents.add(tempo);
 
@@ -53,29 +53,48 @@ public class CreateEvent extends AppCompatActivity {
                 // If event is submitted, write to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        Event event = new Event(eventName,eventDescription,eventAddress,eventDate,eventTime,eventType);
-                        event.eventDataToMap();
-                        if(!formComplete) {
-                            // TODO Not properly functioning, can only either get stuck at this message or not reach at all
-                            AlertDialog.Builder builder = new AlertDialog.Builder(CreateEvent.this);
-                            builder.setMessage("Please fill out all the entries before submitting your event!").setTitle("Dialog Box");
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-                        } else {
-                            mDatabase = FirebaseDatabase.getInstance().getReference();
-                            String key = mDatabase.child("events").push().getKey();
-                            Map<String, Object> newEvent = new HashMap<>();
-                            newEvent.put(key, event);
+                        // Add new event to database if user submitted
+                        mDatabase = FirebaseDatabase.getInstance().getReference();
 
-                            mDatabase.child("events").updateChildren(newEvent);
-                            // TODO Double click to return to main page????
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(intent);
-                        }
+                        Event event = new Event(eventName,eventDescription,eventAddress,eventTime,eventType);
+                        event.eventDataToMap();
+
+                        String key = mDatabase.child("events").push().getKey();
+                        Map<String, Object> newEvent = new HashMap<>();
+                        newEvent.put(key, event);
+
+                        mDatabase.child("events").updateChildren(newEvent);
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                backButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
                     }
                 });
 
             }
         });
     }
+
+    // Convert event data into a map
+    public Map<String, Object> eventDataToMap(String eventName, String eventDescription,
+                                              String eventAddress, String eventTime) {
+
+        Map<String, Object> eventData = new HashMap<>();
+
+        eventData.put("name", eventName);
+        eventData.put("description", eventDescription);
+        eventData.put("location", eventAddress);
+        eventData.put("time", eventTime);
+
+        return eventData;
+    }
+
 }
