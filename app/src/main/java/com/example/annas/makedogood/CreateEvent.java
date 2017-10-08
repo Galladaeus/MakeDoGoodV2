@@ -25,9 +25,9 @@ public class CreateEvent extends AppCompatActivity {
                 final EditText date = (EditText) findViewById(R.id.date);
                 String dat = date.getText().toString();
                 final EditText time = (EditText) findViewById(R.id.time);
-                String tim = date.getText().toString();
-
-
+                String tim = time.getText().toString();
+                final EditText eventd = (EditText) findViewById(R.id.editText13);
+                String description = eventd.getText().toString();
             }
         });
     }
