@@ -30,16 +30,6 @@ public class Event {
         this.type = type;
     }
 
-    public boolean isEventEntryEmpty() {
-        if(this.name == "" || this.description == "" || this.address == ""
-                || this.date == "" || this.time == "" || this.type == "") {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     @Exclude
     public Map<String, Object> eventDataToMap() {
 
@@ -47,7 +37,7 @@ public class Event {
 
         eventData.put("name", name);
         eventData.put("description", description);
-        eventData.put("location", address);
+        eventData.put("address", address);
         eventData.put("date", date);
         eventData.put("time", time);
         eventData.put("type", type);
