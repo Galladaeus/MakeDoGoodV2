@@ -25,6 +25,8 @@ public class CreateEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
+
+                final Button backButton = (Button) findViewById(R.id.button3);
                 final EditText name = (EditText) findViewById(R.id.event_name);
                 final String eventName = name.getText().toString();
 
@@ -62,7 +64,16 @@ public class CreateEvent extends AppCompatActivity {
                         newEvent.put(key, event);
 
                         mDatabase.child("events").updateChildren(newEvent);
-                        // TODO Double click to return to main page????
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                backButton.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }
