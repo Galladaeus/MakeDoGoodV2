@@ -1,7 +1,10 @@
 package com.example.annas.makedogood;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -31,6 +34,18 @@ public class CurrentEvents extends AppCompatActivity {
 
         ListView listView = (ListView) findViewById(R.id.events);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long arg3) {
+                Intent intent = new Intent(CurrentEvents.this, SpecificEvent.class);
+
+                intent.putExtra("position", position);
+                startActivity(intent);
+            }
+
+        });
     }
 
     public static void add(Event tempo) {
