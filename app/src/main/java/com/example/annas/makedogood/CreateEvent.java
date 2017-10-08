@@ -1,6 +1,7 @@
 package com.example.annas.makedogood;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,8 +26,6 @@ public class CreateEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-
-                final Button backButton = (Button) findViewById(R.id.button3);
                 final EditText name = (EditText) findViewById(R.id.event_name);
                 final String eventName = name.getText().toString();
 
@@ -49,10 +48,12 @@ public class CreateEvent extends AppCompatActivity {
 
                 CurrentEvents.add(tempo);
 
+                final Button backButton = (Button) findViewById(R.id.back_button);
                 final Button submitButton = (Button) findViewById(R.id.submit_button);
                 // If event is submitted, write to database
                 submitButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
+
                         // Add new event to database if user submitted
                         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -78,23 +79,7 @@ public class CreateEvent extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-
             }
         });
     }
-
-    // Convert event data into a map
-    public Map<String, Object> eventDataToMap(String eventName, String eventDescription,
-                                              String eventAddress, String eventTime) {
-
-        Map<String, Object> eventData = new HashMap<>();
-
-        eventData.put("name", eventName);
-        eventData.put("description", eventDescription);
-        eventData.put("location", eventAddress);
-        eventData.put("time", eventTime);
-
-        return eventData;
-    }
-
 }
